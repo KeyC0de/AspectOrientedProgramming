@@ -1,0 +1,4 @@
+"== Running with AspectJ =="
+Main thread starting.
+Child#20 quits.
+Child#18 quits.
