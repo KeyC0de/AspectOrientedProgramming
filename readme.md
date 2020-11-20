@@ -19,6 +19,8 @@ No matter all this fancy lingo. This is basically just another general purpose d
 
 I have developed this demo on my Windows 8.1 x86_64 computer, using IntelliJ IDEA 2018.1 for Java and Microsoft Visual Studio 2017 for C++. The C++ part lies in the cpp folder.
 
+For the Java aspectJ implementation you can find in-depth details in java_aspectj.pdf in Greek (sorry but you won't really be missing much).
+
 
 # Contribute
 
