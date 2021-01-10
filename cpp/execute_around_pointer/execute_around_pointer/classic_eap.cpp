@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 
+
 class VectorAspect
 {
 	std::vector<int>* m_vec;
