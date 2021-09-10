@@ -8,8 +8,10 @@ class VectorAspect
 public:
 	VectorAspect( std::vector<int>* v )
 		:
-		m_vec( v )
-	{}
+		m_vec{v}
+	{
+
+	}
 
 	class proxy final
 	{
@@ -19,11 +21,15 @@ public:
 			:
 			v_{v}
 		{
-			std::cout << "Before size is: " << v_->size() << '\n';
+			std::cout << "Before size is: "
+				<< v_->size()
+				<< '\n';
 		}
 		~proxy() noexcept
 		{
-			std::cout << "After size is: " << v_->size() << '\n';
+			std::cout << "After size is: "
+				<< v_->size()
+				<< '\n';
 		}
 
 		std::vector<int>* operator->()

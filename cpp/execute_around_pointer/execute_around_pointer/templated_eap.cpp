@@ -2,15 +2,16 @@
 #include <vector>
 
 
-template<class NextAspect,
-	class Para>
+template<class NextAspect, class Para>
 class Aspect
 {
 protected:
 	Aspect( Para p )
 		:
-		m_para(p)
-	{}
+		m_para{p}
+	{
+
+	}
 	Para m_para;
 public:
 	NextAspect operator->()
@@ -19,8 +20,7 @@ public:
 	}
 };
 
-template<class NextAspect,
-	class Para>
+template<class NextAspect, class Para>
 struct Visualizing
 	:
 	Aspect<NextAspect, Para>
@@ -28,18 +28,17 @@ struct Visualizing
 public:
 	Visualizing( Para p )
 		:
-		Aspect<NextAspect, Para>( p )
+		Aspect<NextAspect, Para>{p}
 	{
-		std::cout << "Before Visualization aspect" << '\n';
+		std::cout << "Before Visualization aspect\n";
 	}
 	~Visualizing()
 	{
-		std::cout << "After Visualization aspect" << '\n';
+		std::cout << "After Visualization aspect\n";
 	}
 };
 
-template<class NextAspect,
-	class Para>
+template<class NextAspect, class Para>
 struct Locking
 	:
 	Aspect<NextAspect, Para>
@@ -47,18 +46,17 @@ struct Locking
 public:
 	Locking( Para p )
 		:
-		Aspect<NextAspect, Para>( p )
+		Aspect<NextAspect, Para>{p}
 	{
-		std::cout << "Before Lock aspect" << '\n';
+		std::cout << "Before Lock aspect\n";
 	}
 	~Locking() 
 	{
-		std::cout << "After Lock aspect" << '\n';
+		std::cout << "After Lock aspect\n";
 	}
 };
 
-template <class NextAspect,
-	class Para>
+template <class NextAspect, class Para>
 struct Logging
 	:
 	Aspect<NextAspect, Para>
@@ -66,26 +64,28 @@ struct Logging
 public:
 	Logging( Para p )
 		:
-		Aspect<NextAspect, Para>(p)
+		Aspect<NextAspect, Para>{p}
 	{
-		std::cout << "Before Log aspect" << '\n';
+		std::cout << "Before Log aspect\n";
 	}
 	~Logging() 
 	{
-		std::cout << "After Log aspect" << '\n';
+		std::cout << "After Log aspect\n";
 	}
 };
 
-template<class Aspect,
-	class Para>
+template<class Aspect, class Para>
 class AspectWeaver
 {
 	Para m_para;
 public:
 	AspectWeaver( Para p )
 		:
-		m_para(p)
-	{}    
+		m_para{p}
+	{
+
+	}
+
 	Aspect operator->() 
 	{
 		return Aspect(m_para);
