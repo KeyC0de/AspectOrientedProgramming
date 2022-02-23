@@ -4,43 +4,44 @@
 
 class VectorAspect
 {
-	std::vector<int>* m_vec;
+	std::vector<int>* m_pAspect;
 public:
 	VectorAspect( std::vector<int>* v )
 		:
-		m_vec{v}
+		m_pAspect{v}
 	{
 
 	}
 
-	class proxy final
+	class Vector final
 	{
-		std::vector<int>* v_;
+		std::vector<int>* m_vec;
 	public:
-		proxy( std::vector<int>* v )
+		Vector( std::vector<int>* v )
 			:
-			v_{v}
+			m_vec{v}
 		{
 			std::cout << "Before size is: "
-				<< v_->size()
-				<< '\n';
-		}
-		~proxy() noexcept
-		{
-			std::cout << "After size is: "
-				<< v_->size()
+				<< m_vec->size()
 				<< '\n';
 		}
 
+		~Vector() noexcept
+		{
+			std::cout << "After size is: "
+				<< m_vec->size()
+				<< '\n';
+		}
+		
 		std::vector<int>* operator->()
 		{
-			return v_;
+			return m_vec;
 		}
 	};
 
-	proxy operator->()
+	Vector operator->()
 	{
-		return proxy{m_vec};
+		return Vector{m_pAspect};
 	}
 };
 
@@ -57,14 +58,18 @@ int main()
 
 	for ( std::vector<int>::const_iterator it = vec.begin(); it < vec.end(); ++it )
 	{
-		std::cout << *it << '\n';
+		std::cout << *it
+			<< '\n';
 	}
 	std::cout << '\n';
 	for ( std::vector<int>::const_iterator it = veca->begin(); it < veca->end(); ++it )
 	{
-		std::cout << *it << '\n';
+		std::cout << *it
+			<< '\n';
 	}
 
-	std::system( "pause" );
-	return 0;
+#if defined _DEBUG && !defined NDEBUG
+	while ( !getchar() );
+#endif
+	return EXIT_SUCCESS;
 }
